@@ -1,7 +1,7 @@
 # Mini project: Linear Regression Model
 
 
-## Problem 1: Linear Regression Model
+## Linear Regression Model:
 
 This project includes a linear regression model for predicting scores based on the number of hours studied.
 
