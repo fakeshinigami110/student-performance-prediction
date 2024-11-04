@@ -1,67 +1,55 @@
-# K-Nearest Neighbors Classifier
+# Mini project: Linear Regression Model
 
+![Linear Regression](images/linear_regression.png)
 
-![KNN Classification](images/correlation_heatmap.png)
+## Problem 1: Linear Regression Model
 
-## K-Nearest Neighbors Classifier
-
-This project implements a KNN classifier using a dataset on mobile device usage and user behavior.
+This project includes a linear regression model for predicting scores based on the number of hours studied.
 
 ### Project Overview
-This project trains a K-Nearest Neighbors model to classify users based on their mobile device behavior. The dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset).
+This model uses simple linear regression to predict student scores based on study hours. The model was trained on a small dataset of hours and scores, and then used to predict scores for new inputs.
 
 ### Code Outline
-1. **Dataset Preparation**: Data is loaded, categorical values are encoded, and continuous features are standardized.
-2. **Model Training**: A KNN model is trained and evaluated using GridSearchCV to find the best parameters.
-3. **Prediction Function**: A function for predicting user class based on input features is provided.
-4. **Visualization**: Several visualizations are included to show data distribution and correlations.
+1. **Data Preparation**: Training and test datasets are created using hours and score data.
+2. **Model Training**: The model is trained using the `LinearRegression` class from `sklearn`.
+3. **Prediction**: The model predicts scores for test inputs and computes prediction errors.
+4. **Visualization**: A scatter plot shows the relationship between hours studied and predicted scores.
 
 ### Running the Code
-1. Import required libraries:
+1. Import the necessary libraries:
     ```python
-    import pandas as pd
     import numpy as np
-    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.linear_model import LinearRegression
     ```
 
-2. Preprocess and standardize data:
+2. Train the model and make predictions:
     ```python
-    df = pd.read_csv("user_behavior_dataset.csv")
-    df = pd.get_dummies(df, columns=['Device Model'])
-    scaler = StandardScaler()
-    X_train[continuous_features] = scaler.fit_transform(X_train[continuous_features])
-    X_test[continuous_features] = scaler.transform(X_test[continuous_features])
+    model = LinearRegression()
+    model.fit(hours_train, score_train)
+    test_Ys = model.predict(hours_test)
     ```
 
-3. Train and evaluate the model:
+3. Plot results:
     ```python
-    knn = KNeighborsClassifier(n_neighbors=5, p=1, weights='distance')
-    knn.fit(X_train, y_train)
-    ```
-
-4. Run predictions with the custom function:
-    ```python
-    def predict_user_class(input_features):
-        input_features[continuous_features] = scaler.transform(input_features[continuous_features])
-        predicted_class = knn.predict(input_features)
-        return predicted_class[0]
+    def plot_linear_regression():
+        plt.scatter(hours_train, score_train, color='blue', label='Training Data')
+        plt.plot(hours_test, test_Ys, color='red', label='Predicted Score')
+        plt.xlabel('Hours Studied')
+        plt.ylabel('Score')
+        plt.legend()
+        plt.title('Linear Regression: Hours vs Score')
+        plt.savefig('images/linear_regression.png')
+        plt.show()
+    plot_linear_regression()
     ```
 
 ### Requirements
-- `pandas`
 - `numpy`
 - `scikit-learn`
-- `seaborn`
 - `matplotlib`
 
-### Visualizations
-- **User Behavior Class by Operating System** ![KNN Classification](images/knn_classification.png)
-- **User usage time by OS**![time by os](images/time_by_os_and_class.png)  
-- **Average App Usage Time per User Behavior Class** ![Average Usage](images/avrage_usage.png)
-- **Mobile Usage Time Distribution by User Class** ![Time Distribution](images/time_distribution_by_class.png)
-- **Heatmap of Feature Correlations** ![Heatmap](images/correlation_heatmap.png)
-
 ### Results
-The trained KNN model achieves a high accuracy in predicting user behavior class, and the visualizations provide insights into device usage patterns among different user classes.
+This project provides a basic implementation of a linear regression model for predicting test scores. Predicted scores and prediction errors are printed, and the final plot is saved in the `images` directory.
 
 ---
+
