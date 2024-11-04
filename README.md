@@ -1,6 +1,5 @@
 # Mini project: Linear Regression Model
 
-![Linear Regression](images/linear_regression.png)
 
 ## Problem 1: Linear Regression Model
 
@@ -50,6 +49,7 @@ This model uses simple linear regression to predict student scores based on stud
 
 ### Results
 This project provides a basic implementation of a linear regression model for predicting test scores. Predicted scores and prediction errors are printed, and the final plot is saved in the `images` directory.
+![Linear Regression](images/linear_regression.png)
 
 ---
 
